@@ -1,19 +1,30 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
 import Image from "next/image";
+import { useFormState, useFormStatus } from "react-dom";
+import { subscribeNewsletter } from "@/lib/public-actions";
 
-export default function Newsletter() {
-  const [email, setEmail] = useState("");
-  const [enviado, setEnviado] = useState(false);
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="whitespace-nowrap rounded-full bg-lime px-8 py-3.5 font-mulish text-sm font-semibold text-brand transition-transform hover:scale-105 disabled:opacity-60"
+    >
+      {pending ? "Enviando…" : "Suscribirme"}
+    </button>
+  );
+}
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (!email) return;
-    // TODO: conectar a un servicio de email / Supabase cuando esté disponible.
-    setEnviado(true);
-    setEmail("");
-  }
+export default function Newsletter({
+  titulo = "Sumate a nuestro newsletter",
+  texto = "Recibí novedades, torneos y promociones exclusivas para la comunidad del club.",
+}: {
+  titulo?: string;
+  texto?: string;
+}) {
+  const [state, formAction] = useFormState(subscribeNewsletter, null);
 
   return (
     <section className="relative overflow-hidden">
@@ -23,45 +34,37 @@ export default function Newsletter() {
         alt=""
         fill
         sizes="100vw"
+        unoptimized
         className="object-cover"
       />
       {/* Overlay #142d4b al 75% */}
       <div className="absolute inset-0 bg-brand/75" />
 
       <div className="relative mx-auto max-w-4xl px-6 py-16 text-center text-white md:py-20">
-        <h2 className="font-kanit text-3xl font-bold md:text-4xl">
-          Sumate a nuestro newsletter
-        </h2>
-        <p className="mx-auto mt-3 max-w-xl font-mulish text-white/80">
-          Recibí novedades, torneos y promociones exclusivas para la comunidad
-          del club.
-        </p>
+        <h2 className="font-kanit text-3xl font-bold md:text-4xl">{titulo}</h2>
+        <p className="mx-auto mt-3 max-w-xl font-mulish text-white/80">{texto}</p>
 
-        {enviado ? (
-          <p className="mt-8 font-mulish font-semibold text-lime">
-            ¡Gracias por suscribirte! Pronto tendrás noticias nuestras.
-          </p>
+        {state?.ok ? (
+          <p className="mt-8 font-mulish font-semibold text-lime">{state.msg}</p>
         ) : (
           <form
-            onSubmit={onSubmit}
+            action={formAction}
             className="mx-auto mt-8 flex max-w-lg flex-col gap-3 sm:flex-row"
           >
             <input
               type="email"
+              name="email"
               required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               placeholder="Tu correo electrónico"
               aria-label="Correo electrónico"
               className="w-full rounded-full bg-white px-6 py-3.5 font-mulish text-sm text-brand outline-none ring-lime focus:ring-2"
             />
-            <button
-              type="submit"
-              className="whitespace-nowrap rounded-full bg-lime px-8 py-3.5 font-mulish text-sm font-semibold text-brand transition-transform hover:scale-105"
-            >
-              Suscribirme
-            </button>
+            <SubmitButton />
           </form>
+        )}
+
+        {state && !state.ok && (
+          <p className="mt-4 font-mulish text-sm text-white/90">{state.msg}</p>
         )}
       </div>
     </section>

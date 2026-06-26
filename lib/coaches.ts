@@ -76,6 +76,7 @@ export async function getCoaches(limit = 8): Promise<Coach[]> {
   const { data, error } = await supabase
     .from("coaches")
     .select("id, nombre, cargo, descripcion, foto_url")
+    .eq("activo", true)
     .order("orden", { ascending: true })
     .limit(limit);
 

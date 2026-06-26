@@ -116,6 +116,7 @@ export default async function TorneoCalendario() {
             alt="Jugador de tenis ejecutando un golpe en acción"
             fill
             sizes="(max-width: 1024px) 100vw, 33vw"
+            unoptimized
             className="object-cover"
           />
         </div>

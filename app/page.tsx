@@ -12,8 +12,10 @@ import Estadisticas from "@/components/sections/Estadisticas";
 import Testimonials from "@/components/sections/Testimonials";
 import Newsletter from "@/components/sections/Newsletter";
 import Footer from "@/components/sections/Footer";
+import { getSettings } from "@/lib/settings";
 
-export default function Home() {
+export default async function Home() {
+  const settings = await getSettings();
   return (
     <>
       <Navbar />
@@ -29,7 +31,10 @@ export default function Home() {
         <ReservaCanchas />
         <Estadisticas />
         <Testimonials />
-        <Newsletter />
+        <Newsletter
+          titulo={settings.newsletter_titulo}
+          texto={settings.newsletter_texto}
+        />
       </main>
       <Footer />
     </>

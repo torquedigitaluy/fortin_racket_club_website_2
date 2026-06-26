@@ -61,6 +61,7 @@ export async function getProximosPartidos(limit = 4): Promise<Partido[]> {
   const { data, error } = await supabase
     .from("partidos")
     .select("id, fecha, jugadores, cancha")
+    .eq("activo", true)
     .order("fecha", { ascending: true })
     .limit(limit);
 

@@ -7,13 +7,23 @@
  *   "not_configured" → MP todavía no tiene token (modo desarrollo)
  *   "error"          → falló la creación del pago
  */
-export type CheckoutStatus = "redirect" | "not_configured" | "error";
+export type CheckoutStatus = "redirect" | "not_configured" | "error" | "taken";
+
+/** Datos opcionales para registrar una reserva de cancha junto con el pago. */
+export type ReservaInput = {
+  cancha: string;
+  fecha: string; // YYYY-MM-DD
+  hora: number;
+  nombre?: string;
+  email?: string;
+};
 
 export async function startCheckout(input: {
   title: string;
   price: number;
   quantity?: number;
   reference?: string;
+  reserva?: ReservaInput;
 }): Promise<CheckoutStatus> {
   try {
     const res = await fetch("/api/checkout", {
@@ -22,6 +32,7 @@ export async function startCheckout(input: {
       body: JSON.stringify(input),
     });
 
+    if (res.status === 409) return "taken";
     if (!res.ok) return "error";
 
     const data = (await res.json()) as

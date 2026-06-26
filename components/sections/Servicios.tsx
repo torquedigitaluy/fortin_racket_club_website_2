@@ -1,51 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { getServicios } from "@/lib/servicios";
 
-type Servicio = {
-  title: string;
-  text: string;
-  image: string;
-  alt: string;
-  href: string;
-};
+export default async function Servicios() {
+  const servicios = await getServicios();
 
-const SERVICIOS: Servicio[] = [
-  {
-    title: "Reserva de canchas",
-    text: "Canchas profesionales disponibles de 09:00 a 23:00. Reservá online en segundos.",
-    image:
-      "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=800&q=80",
-    alt: "Cancha de tenis lista para jugar",
-    href: "#reservas",
-  },
-  {
-    title: "Entrenamientos personales",
-    text: "Clases individuales con coaches profesionales adaptadas a tu nivel y objetivos.",
-    image:
-      "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=800&q=80",
-    alt: "Entrenador dando una clase de tenis",
-    href: "#actividades",
-  },
-  {
-    title: "Escuela infantil",
-    text: "Formación para los más chicos en un entorno seguro, divertido y profesional.",
-    image:
-      "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80",
-    alt: "Niños aprendiendo a jugar al tenis",
-    href: "#actividades",
-  },
-  {
-    title: "Actividades",
-    text: "Torneos, clases sociales y eventos para vivir el club más allá de la cancha.",
-    image:
-      "https://images.unsplash.com/photo-1530915365347-e35b749a0381?auto=format&fit=crop&w=800&q=80",
-    alt: "Jugadores disfrutando una actividad del club",
-    href: "#actividades",
-  },
-];
-
-export default function Servicios() {
   return (
     <section id="servicios" className="bg-offwhite py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6">
@@ -65,7 +25,7 @@ export default function Servicios() {
 
         {/* Grilla de 4 tarjetas */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {SERVICIOS.map((servicio) => (
+          {servicios.map((servicio) => (
             <article
               key={servicio.title}
               className="group flex flex-col overflow-hidden rounded-t-[2rem] bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
@@ -77,6 +37,7 @@ export default function Servicios() {
                   alt={servicio.alt}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  unoptimized
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
