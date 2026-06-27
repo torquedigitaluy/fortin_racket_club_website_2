@@ -12,6 +12,18 @@ export type Settings = Record<string, string>;
 
 export const SETTINGS_DEFAULTS: Settings = {
   hero_cta_label: "Saber más",
+  // Hero: "galeria" (carrusel de imágenes) o "video" (video en loop).
+  hero_modo: "video",
+  hero_video_url: "https://assets.mixkit.co/videos/880/880-720.mp4",
+  // Video vertical 9:16 para móvil; si queda vacío, móvil usa el de escritorio.
+  hero_video_movil_url:
+    "https://videos.pexels.com/video-files/5730499/5730499-hd_720_1366_25fps.mp4",
+  hero_video_poster_url:
+    "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=1920&q=80",
+  hero_video_titulo: "Fortín Racket Club",
+  hero_video_texto:
+    "Un club moderno donde el tenis se vive con pasión. Canchas profesionales, entrenamiento de primer nivel y comunidad.",
+  hero_video_cta_label: "Saber más",
   footer_descripcion:
     "Un club moderno donde el tenis se vive con pasión, comunidad y alto rendimiento.",
   contacto_telefono: "+54 11 1234-5678",
@@ -55,8 +67,34 @@ export const SETTINGS_DEFAULTS: Settings = {
 // Agrupación y etiquetas para el formulario del CMS.
 export const SETTINGS_GROUPS: {
   label: string;
-  fields: { key: string; label: string; multiline?: boolean; image?: boolean }[];
+  fields: {
+    key: string;
+    label: string;
+    multiline?: boolean;
+    image?: boolean;
+    video?: boolean;
+    select?: { value: string; label: string }[];
+  }[];
 }[] = [
+  {
+    label: "Hero — modo y video",
+    fields: [
+      {
+        key: "hero_modo",
+        label: "Modo del hero",
+        select: [
+          { value: "galeria", label: "Galería de imágenes" },
+          { value: "video", label: "Video en loop" },
+        ],
+      },
+      { key: "hero_video_url", label: "Video del hero (escritorio)", video: true },
+      { key: "hero_video_movil_url", label: "Video del hero (móvil — vertical 9:16)", video: true },
+      { key: "hero_video_poster_url", label: "Video — imagen de carga (poster)", image: true },
+      { key: "hero_video_titulo", label: "Video — título" },
+      { key: "hero_video_texto", label: "Video — bajada", multiline: true },
+      { key: "hero_video_cta_label", label: "Video — texto del botón" },
+    ],
+  },
   {
     label: "Contacto",
     fields: [

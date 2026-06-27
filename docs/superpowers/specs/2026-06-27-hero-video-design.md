@@ -31,8 +31,22 @@ Nuevas claves en `site_settings` (key/value), con defaults en
 | `hero_video_titulo` | texto | "Fortín Racket Club" |
 | `hero_video_texto` | multilínea | bajada |
 | `hero_video_cta_label` | texto | "Saber más" |
+| `hero_video_movil_url` | video (upload o URL) | clip vertical 9:16 de tenis |
 
 El destino del botón se mantiene en `#quienes-somos` (igual que el carrusel).
+
+## Video por dispositivo (escritorio vs móvil)
+
+El admin define un video aparte para móvil (vertical 9:16). La selección es
+automática por viewport: en pantallas ≤767px (breakpoint mobile de Tailwind) se
+usa `hero_video_movil_url`; si está vacío, móvil cae al video de escritorio.
+
+Implementación: `HeroVideoBg.tsx` (client) usa `window.matchMedia` para elegir
+la fuente. El `<video>` se renderiza sin `src` en el servidor (solo poster) y la
+fuente se setea al montar, así solo se descarga el video correcto y no hay
+mismatch de hidratación. `key={src}` fuerza el remount para que el autoplay
+arranque al cambiar de fuente (p. ej. al rotar el dispositivo). `HeroVideo` pasa
+a ser server wrapper del overlay + este hijo client.
 
 El bucket `media` es público y no restringe MIME, así que acepta `.mp4`. Aplica
 el límite de tamaño por archivo de Supabase (50 MB por defecto) → usar clips

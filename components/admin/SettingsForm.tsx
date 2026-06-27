@@ -5,6 +5,7 @@ import { useFormStatus } from "react-dom";
 import { SETTINGS_GROUPS, type Settings } from "@/lib/settings";
 import { saveSettings } from "@/app/admin/(panel)/ajustes/actions";
 import ImageUpload from "./ImageUpload";
+import VideoUpload from "./VideoUpload";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -45,10 +46,30 @@ export default function SettingsForm({ settings }: { settings: Settings }) {
                 label={f.label}
                 defaultValue={settings[f.key] ?? ""}
               />
+            ) : f.video ? (
+              <VideoUpload
+                key={f.key}
+                name={f.key}
+                label={f.label}
+                defaultValue={settings[f.key] ?? ""}
+              />
             ) : (
               <label key={f.key} className="flex flex-col gap-1">
                 <span className="font-mulish text-sm text-brand">{f.label}</span>
-                {f.multiline ? (
+                {f.select ? (
+                  <select
+                    name={f.key}
+                    defaultValue={settings[f.key] ?? ""}
+                    className={inputCls}
+                    onChange={() => setGuardado(false)}
+                  >
+                    {f.select.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                ) : f.multiline ? (
                   <textarea
                     name={f.key}
                     defaultValue={settings[f.key] ?? ""}
