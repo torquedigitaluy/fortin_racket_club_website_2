@@ -20,9 +20,18 @@ export default async function Hero() {
         titulo={settings.hero_video_titulo}
         texto={settings.hero_video_texto}
         ctaLabel={settings.hero_video_cta_label}
+        logoUrl={settings.hero_logo_url}
+        logoAlt={settings.hero_logo_alt}
       />
     );
   }
 
-  return <HeroCarousel slides={slides} ctaLabel={settings.hero_cta_label} />;
+  return (
+    <HeroCarousel
+      slides={slides}
+      ctaLabel={settings.hero_cta_label}
+      logoUrl={settings.hero_logo_url}
+      logoAlt={settings.hero_logo_alt}
+    />
+  );
 }

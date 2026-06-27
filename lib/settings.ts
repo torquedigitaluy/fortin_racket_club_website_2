@@ -12,6 +12,9 @@ export type Settings = Record<string, string>;
 
 export const SETTINGS_DEFAULTS: Settings = {
   hero_cta_label: "Saber más",
+  // Logo opcional arriba del título del hero (sirve en galería y video).
+  hero_logo_url: "/hero-logo-placeholder.svg",
+  hero_logo_alt: "Logo Fortín Racket Club",
   // Hero: "galeria" (carrusel de imágenes) o "video" (video en loop).
   hero_modo: "video",
   hero_video_url: "https://assets.mixkit.co/videos/880/880-720.mp4",
@@ -114,6 +117,8 @@ export const SETTINGS_GROUPS: {
   {
     label: "Hero & banner",
     fields: [
+      { key: "hero_logo_url", label: "Hero — logo (arriba del título)", image: true },
+      { key: "hero_logo_alt", label: "Hero — texto alternativo del logo" },
       { key: "hero_cta_label", label: "Texto del botón del hero" },
       { key: "cta_eyebrow", label: "Banner — bajada" },
       { key: "cta_titulo", label: "Banner — título" },
