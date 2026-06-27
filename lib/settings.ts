@@ -36,7 +36,7 @@ export const SETTINGS_DEFAULTS: Settings = {
   social_facebook: "#",
   social_youtube: "#",
   cta_eyebrow: "Oferta de bienvenida",
-  cta_titulo: "¡Tu primera clase es GRATIS!",
+  cta_titulo: "¡Tu primera clase\nes GRATIS!",
   cta_texto:
     "Probá una clase con nuestros coaches profesionales sin costo y descubrí por qué somos tu próximo club.",
   cta_boton_label: "Saber más",
@@ -124,7 +124,7 @@ export const SETTINGS_GROUPS: {
       { key: "hero_logo_alt", label: "Hero — texto alternativo del logo" },
       { key: "hero_cta_label", label: "Texto del botón del hero" },
       { key: "cta_eyebrow", label: "Banner — bajada" },
-      { key: "cta_titulo", label: "Banner — título" },
+      { key: "cta_titulo", label: "Banner — título", multiline: true },
       { key: "cta_texto", label: "Banner — texto", multiline: true },
       { key: "cta_boton_label", label: "Banner — texto del botón" },
       { key: "cta_boton_href", label: "Banner — destino del botón" },

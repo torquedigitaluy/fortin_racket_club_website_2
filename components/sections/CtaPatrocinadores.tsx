@@ -21,7 +21,7 @@ export default async function CtaPatrocinadores() {
           <span className="font-mulish text-sm font-semibold uppercase tracking-widest text-white/90">
             {settings.cta_eyebrow}
           </span>
-          <h2 className="max-w-2xl font-kanit text-3xl font-bold uppercase leading-tight drop-shadow-md sm:text-4xl md:text-5xl">
+          <h2 className="max-w-2xl whitespace-pre-line font-kanit text-3xl font-bold uppercase leading-tight drop-shadow-md sm:text-4xl md:text-5xl">
             {settings.cta_titulo}
           </h2>
           <p className="max-w-xl font-mulish text-white/90">{settings.cta_texto}</p>

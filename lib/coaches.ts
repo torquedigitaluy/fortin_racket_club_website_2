@@ -34,7 +34,7 @@ const MOCK_COACHES: Coach[] = [
     descripcion:
       "Ex jugador profesional con más de 15 años formando campeones.",
     foto_url:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1714841197541-aa64d90cb6a8?auto=format&fit=crop&w=600&q=80",
   },
   {
     id: 2,
@@ -43,7 +43,7 @@ const MOCK_COACHES: Coach[] = [
     descripcion:
       "Especialista en técnica y preparación para la competencia.",
     foto_url:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1545151414-8a948e1ea54f?auto=format&fit=crop&w=600&q=80",
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const MOCK_COACHES: Coach[] = [
     descripcion:
       "Apasionado por iniciar a los más chicos en el mundo del tenis.",
     foto_url:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1516742720271-6ae39cbc5bd1?auto=format&fit=crop&w=600&q=80",
   },
   {
     id: 4,
@@ -61,7 +61,7 @@ const MOCK_COACHES: Coach[] = [
     descripcion:
       "Diseña los planes físicos para que rindas al máximo en cancha.",
     foto_url:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1595435742656-5272d0b3fa82?auto=format&fit=crop&w=600&q=80",
   },
 ];
 
