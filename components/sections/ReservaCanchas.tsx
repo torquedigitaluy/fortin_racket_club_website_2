@@ -20,6 +20,7 @@ export default async function ReservaCanchas() {
       fechaInicial={hoy}
       ocupacionInicial={ocupacion}
       imagenUrl={settings.reservas_imagen_url}
+      imagenMovilUrl={settings.reservas_imagen_movil_url}
       imagenAlt={settings.reservas_imagen_alt}
     />
   );

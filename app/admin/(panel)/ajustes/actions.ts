@@ -14,7 +14,10 @@ export async function saveSettings(formData: FormData) {
   const supabase = createClient();
   if (!supabase) throw new Error("Supabase no está configurado.");
 
-  const keys = SETTINGS_GROUPS.flatMap((g) => g.fields.map((f) => f.key));
+  // Los campos `info` son notas del formulario, no tienen input ni key real en site_settings.
+  const keys = SETTINGS_GROUPS.flatMap((g) =>
+    g.fields.filter((f) => !f.info).map((f) => f.key)
+  );
   const rows = keys.map((key) => ({
     key,
     value: String(formData.get(key) ?? ""),

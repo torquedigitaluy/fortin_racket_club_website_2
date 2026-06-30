@@ -71,7 +71,13 @@ export const RESOURCES: Record<string, Resource> = {
     fields: [
       { name: "title", label: "Título", type: "text", required: true, primary: true },
       { name: "texto", label: "Descripción", type: "textarea", required: true },
-      { name: "image_url", label: "Imagen de fondo", type: "image", required: true },
+      { name: "image_url", label: "Imagen de fondo (horizontal 16:9)", type: "image", required: true },
+      {
+        name: "image_movil_url",
+        label: "Imagen de fondo — móvil (vertical 9:16, opcional)",
+        type: "image",
+        help: "Si queda vacía, en móvil se usa la imagen horizontal de arriba.",
+      },
       { name: "alt", label: "Texto alternativo", type: "text" },
       ORDEN,
       ACTIVO,

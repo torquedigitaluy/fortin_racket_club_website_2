@@ -42,20 +42,36 @@ export default function HeroCarousel({
 
   return (
     <section id="inicio" className="relative h-screen min-h-[600px] w-full overflow-hidden">
-      {/* Imágenes de fondo (crossfade) */}
+      {/* Imágenes de fondo (crossfade). Cada slide puede tener una versión
+          vertical (9:16) para móvil; si no, se reutiliza la horizontal. */}
       {slides.map((s, i) => (
-        <Image
+        <div
           key={s.image}
-          src={s.image}
-          alt={s.alt}
-          fill
-          priority={i === 0}
-          sizes="100vw"
-          unoptimized
-          className={`object-cover transition-opacity duration-1000 ${
+          className={`absolute inset-0 transition-opacity duration-1000 ${
             i === current ? "opacity-100" : "opacity-0"
           }`}
-        />
+        >
+          {s.imageMovil && (
+            <Image
+              src={s.imageMovil}
+              alt={s.alt}
+              fill
+              priority={i === 0}
+              sizes="100vw"
+              unoptimized
+              className="object-cover md:hidden"
+            />
+          )}
+          <Image
+            src={s.image}
+            alt={s.alt}
+            fill
+            priority={i === 0}
+            sizes="100vw"
+            unoptimized
+            className={`object-cover ${s.imageMovil ? "hidden md:block" : ""}`}
+          />
+        </div>
       ))}
 
       {/* Overlay oscuro */}

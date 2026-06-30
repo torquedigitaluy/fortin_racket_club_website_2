@@ -16,12 +16,14 @@ export default function ReservaCanchasClient({
   fechaInicial,
   ocupacionInicial,
   imagenUrl,
+  imagenMovilUrl,
   imagenAlt,
 }: {
   precioHora: number;
   fechaInicial: string;
   ocupacionInicial: Ocupacion[];
   imagenUrl: string;
+  imagenMovilUrl?: string;
   imagenAlt: string;
 }) {
   const [cancha, setCancha] = useState<Cancha>("Cancha 1");
@@ -86,13 +88,23 @@ export default function ReservaCanchasClient({
         {/* Fila superior: grid asimétrico (imagen + caja destacada) */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="relative h-72 overflow-hidden rounded-2xl lg:col-span-2 lg:h-auto">
+            {imagenMovilUrl && (
+              <Image
+                src={imagenMovilUrl}
+                alt={imagenAlt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 66vw"
+                unoptimized
+                className="object-cover lg:hidden"
+              />
+            )}
             <Image
               src={imagenUrl}
               alt={imagenAlt}
               fill
               sizes="(max-width: 1024px) 100vw, 66vw"
               unoptimized
-              className="object-cover"
+              className={`object-cover ${imagenMovilUrl ? "hidden lg:block" : ""}`}
             />
           </div>
 

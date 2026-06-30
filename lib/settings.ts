@@ -61,6 +61,11 @@ export const SETTINGS_DEFAULTS: Settings = {
   reservas_imagen_url:
     "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=1200&q=80",
   reservas_imagen_alt: "Ambiente del club de tenis",
+  // Variantes verticales (9:16) opcionales para móvil. Si quedan vacías, se usa
+  // la imagen horizontal de escritorio también en móvil.
+  clases_imagen_movil_url: "",
+  torneo_imagen_movil_url: "",
+  reservas_imagen_movil_url: "",
   cta_bg_url:
     "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=1920&q=80",
   planes_bg_url:
@@ -72,16 +77,23 @@ export const SETTINGS_DEFAULTS: Settings = {
 };
 
 // Agrupación y etiquetas para el formulario del CMS.
+export type SettingsField = {
+  key: string;
+  label: string;
+  multiline?: boolean;
+  image?: boolean;
+  video?: boolean;
+  select?: { value: string; label: string }[];
+  /** Solo se muestra si `settings[dependsOn.key] === dependsOn.value` (ver SettingsForm). */
+  dependsOn?: { key: string; value: string };
+  /** Nota informativa (sin input) en vez de un campo editable. */
+  info?: string;
+  infoLink?: { href: string; label: string };
+};
+
 export const SETTINGS_GROUPS: {
   label: string;
-  fields: {
-    key: string;
-    label: string;
-    multiline?: boolean;
-    image?: boolean;
-    video?: boolean;
-    select?: { value: string; label: string }[];
-  }[];
+  fields: SettingsField[];
 }[] = [
   {
     label: "Hero — modo y video",
@@ -94,12 +106,47 @@ export const SETTINGS_GROUPS: {
           { value: "video", label: "Video en loop" },
         ],
       },
-      { key: "hero_video_url", label: "Video del hero (escritorio)", video: true },
-      { key: "hero_video_movil_url", label: "Video del hero (móvil — vertical 9:16)", video: true },
-      { key: "hero_video_poster_url", label: "Video — imagen de carga (poster)", image: true },
-      { key: "hero_video_titulo", label: "Video — título" },
-      { key: "hero_video_texto", label: "Video — bajada", multiline: true },
-      { key: "hero_video_cta_label", label: "Video — texto del botón" },
+      {
+        key: "_hero_galeria_info",
+        label: "Imágenes de la galería",
+        info: "El carrusel del hero se arma con uno o más slides, cada uno con su imagen horizontal (16:9) y, opcionalmente, una versión vertical (9:16) para móvil. Administralos desde Slides del hero.",
+        infoLink: { href: "/admin/hero_slides", label: "Ir a Slides del hero →" },
+        dependsOn: { key: "hero_modo", value: "galeria" },
+      },
+      {
+        key: "hero_video_url",
+        label: "Video del hero (escritorio)",
+        video: true,
+        dependsOn: { key: "hero_modo", value: "video" },
+      },
+      {
+        key: "hero_video_movil_url",
+        label: "Video del hero (móvil — vertical 9:16)",
+        video: true,
+        dependsOn: { key: "hero_modo", value: "video" },
+      },
+      {
+        key: "hero_video_poster_url",
+        label: "Video — imagen de carga (poster)",
+        image: true,
+        dependsOn: { key: "hero_modo", value: "video" },
+      },
+      {
+        key: "hero_video_titulo",
+        label: "Video — título",
+        dependsOn: { key: "hero_modo", value: "video" },
+      },
+      {
+        key: "hero_video_texto",
+        label: "Video — bajada",
+        multiline: true,
+        dependsOn: { key: "hero_modo", value: "video" },
+      },
+      {
+        key: "hero_video_cta_label",
+        label: "Video — texto del botón",
+        dependsOn: { key: "hero_modo", value: "video" },
+      },
     ],
   },
   {
@@ -146,15 +193,30 @@ export const SETTINGS_GROUPS: {
   {
     label: "Imágenes de secciones",
     fields: [
-      { key: "clases_imagen_url", label: "Clases personalizadas — imagen", image: true },
+      { key: "clases_imagen_url", label: "Clases personalizadas — imagen (horizontal)", image: true },
+      {
+        key: "clases_imagen_movil_url",
+        label: "Clases personalizadas — imagen móvil (vertical 9:16, opcional)",
+        image: true,
+      },
       { key: "clases_imagen_alt", label: "Clases personalizadas — texto alternativo" },
       { key: "beneficios_imagen_url", label: "Beneficios — imagen central", image: true },
       { key: "beneficios_imagen_alt", label: "Beneficios — texto alternativo" },
       { key: "torneo_bg_url", label: "Fortín Club Cup — fondo (polvo de ladrillo)", image: true },
       { key: "torneo_bg_alt", label: "Fortín Club Cup — texto alternativo del fondo" },
-      { key: "torneo_imagen_url", label: "Torneo & Calendario — imagen (derecha)", image: true },
+      { key: "torneo_imagen_url", label: "Torneo & Calendario — imagen (horizontal)", image: true },
+      {
+        key: "torneo_imagen_movil_url",
+        label: "Torneo & Calendario — imagen móvil (vertical 9:16, opcional)",
+        image: true,
+      },
       { key: "torneo_imagen_alt", label: "Torneo & Calendario — texto alternativo" },
-      { key: "reservas_imagen_url", label: "Reserva de canchas — imagen", image: true },
+      { key: "reservas_imagen_url", label: "Reserva de canchas — imagen (horizontal)", image: true },
+      {
+        key: "reservas_imagen_movil_url",
+        label: "Reserva de canchas — imagen móvil (vertical 9:16, opcional)",
+        image: true,
+      },
       { key: "reservas_imagen_alt", label: "Reserva de canchas — texto alternativo" },
     ],
   },

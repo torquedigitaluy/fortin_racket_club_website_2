@@ -10,8 +10,20 @@ export default async function ClasesPersonalizadas() {
   return (
     <section id="actividades" className="bg-white">
       <div className="grid grid-cols-1 lg:grid-cols-2">
-        {/* Izquierda: imagen de tenista recortada (editable desde el CMS) */}
+        {/* Izquierda: imagen de tenista (editable desde el CMS). Admite una
+            versión vertical (9:16) para móvil; si falta, se usa la horizontal. */}
         <div className="relative h-96 md:h-[34rem] lg:h-auto lg:min-h-[640px]">
+          {settings.clases_imagen_movil_url && (
+            <Image
+              src={settings.clases_imagen_movil_url}
+              alt={settings.clases_imagen_alt}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={90}
+              unoptimized
+              className="object-cover lg:hidden"
+            />
+          )}
           <Image
             src={settings.clases_imagen_url}
             alt={settings.clases_imagen_alt}
@@ -19,7 +31,9 @@ export default async function ClasesPersonalizadas() {
             sizes="(max-width: 1024px) 100vw, 50vw"
             quality={90}
             unoptimized
-            className="object-cover"
+            className={`object-cover ${
+              settings.clases_imagen_movil_url ? "hidden lg:block" : ""
+            }`}
           />
         </div>
 

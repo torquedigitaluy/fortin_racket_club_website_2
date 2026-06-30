@@ -5,6 +5,8 @@ import { getSupabase } from "./supabase";
  */
 export type Slide = {
   image: string;
+  /** Versión vertical (9:16) opcional para móvil; si falta, móvil usa `image`. */
+  imageMovil?: string;
   alt: string;
   title: string;
   text: string;
@@ -40,7 +42,7 @@ export async function getHeroSlides(): Promise<Slide[]> {
 
   const { data, error } = await supabase
     .from("hero_slides")
-    .select("image_url, alt, title, texto")
+    .select("image_url, image_movil_url, alt, title, texto")
     .eq("activo", true)
     .order("orden", { ascending: true });
 
@@ -51,6 +53,7 @@ export async function getHeroSlides(): Promise<Slide[]> {
 
   return data.map((r) => ({
     image: r.image_url,
+    imageMovil: r.image_movil_url || undefined,
     alt: r.alt ?? "",
     title: r.title,
     text: r.texto,

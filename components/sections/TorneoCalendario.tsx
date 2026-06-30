@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { getProximosPartidos } from "@/lib/partidos";
@@ -39,91 +40,112 @@ export default async function TorneoCalendario() {
 
   return (
     <section id="torneo" className="w-full">
-      <div className="grid grid-cols-1 lg:grid-cols-3">
-        {/* Columna izquierda: Fortín Club Cup — fondo de polvo de ladrillo con filtro azul */}
-        <div className="relative flex flex-col justify-center overflow-hidden px-8 py-14 lg:px-12 lg:py-20">
-          <ParallaxImage src={settings.torneo_bg_url} alt={settings.torneo_bg_alt} />
-          {/* Filtro azul (similar al banner "Oferta de bienvenida") */}
-          <div className="absolute inset-0 bg-brand/50" />
+      {/* 2 columnas: la imagen ocupa la mitad entera (sin recortes raros para
+          fotos horizontales); el contenido (info + agenda) se apila al lado. */}
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        {/* Columna izquierda: foto del torneo — admite versión vertical para móvil */}
+        <div className="relative aspect-[4/3] overflow-hidden sm:aspect-video lg:aspect-auto lg:min-h-[480px]">
+          {settings.torneo_imagen_movil_url && (
+            <Image
+              src={settings.torneo_imagen_movil_url}
+              alt={settings.torneo_imagen_alt}
+              fill
+              sizes="(max-width: 1023px) 100vw, 50vw"
+              unoptimized
+              className="object-cover lg:hidden"
+            />
+          )}
+          <Image
+            src={settings.torneo_imagen_url}
+            alt={settings.torneo_imagen_alt}
+            fill
+            sizes="(max-width: 1023px) 100vw, 50vw"
+            unoptimized
+            className={`object-cover ${
+              settings.torneo_imagen_movil_url ? "hidden lg:block" : ""
+            }`}
+          />
+        </div>
 
-          <div className="relative text-white">
-            <h2 className="font-kanit text-5xl font-bold md:text-6xl">
-              Fortín Club Cup
-            </h2>
-            <p className="mt-4 font-mulish text-sm text-white/80">
-              Nuestro torneo insignia. Competí, sumá ranking y viví el mejor tenis
-              del club.
-            </p>
-            <ul className="mt-8 space-y-3">
-              {BENEFICIOS.map((beneficio) => (
-                <li
-                  key={beneficio}
-                  className="flex items-start gap-3 font-mulish text-sm text-white"
-                >
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-lime text-brand">
-                    <Check className="h-3.5 w-3.5" />
-                  </span>
-                  {beneficio}
-                </li>
-              ))}
+        {/* Columna derecha: info del torneo (fondo con parallax) + agenda apilados */}
+        <div className="flex flex-col">
+          <div className="relative flex flex-col justify-center overflow-hidden px-8 py-14 lg:px-12 lg:py-16">
+            <ParallaxImage src={settings.torneo_bg_url} alt={settings.torneo_bg_alt} />
+            {/* Filtro azul (similar al banner "Oferta de bienvenida") */}
+            <div className="absolute inset-0 bg-brand/50" />
+
+            <div className="relative text-white">
+              <h2 className="font-kanit text-5xl font-bold md:text-6xl">
+                Fortín Club Cup
+              </h2>
+              <p className="mt-4 font-mulish text-sm text-white/80">
+                Nuestro torneo insignia. Competí, sumá ranking y viví el mejor
+                tenis del club.
+              </p>
+              <ul className="mt-8 space-y-3">
+                {BENEFICIOS.map((beneficio) => (
+                  <li
+                    key={beneficio}
+                    className="flex items-start gap-3 font-mulish text-sm text-white"
+                  >
+                    <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-lime text-brand">
+                      <Check className="h-3.5 w-3.5" />
+                    </span>
+                    {beneficio}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="#contacto"
+                className="mt-10 inline-block w-fit rounded-full bg-lime px-8 py-3 font-mulish text-sm font-semibold text-brand transition-transform hover:scale-105"
+              >
+                Saber más
+              </Link>
+            </div>
+          </div>
+
+          {/* Agenda de partidos (#142d4b) — datos dinámicos */}
+          <div className="flex flex-col justify-center bg-brand px-8 py-14 lg:px-12 lg:py-16">
+            <span className="font-mulish text-sm font-semibold uppercase tracking-widest text-lime">
+              Agenda
+            </span>
+            <h3 className="mt-2 font-kanit text-2xl font-bold text-white md:text-3xl">
+              Próximos partidos
+            </h3>
+
+            <ul className="mt-8 divide-y divide-white/10">
+              {partidos.map((partido) => {
+                const { dia, hora } = formatFecha(partido.fecha);
+                return (
+                  <li key={partido.id} className="flex items-center gap-4 py-4">
+                    <div className="flex w-16 flex-shrink-0 flex-col items-center rounded-lg bg-white/10 px-2 py-2 text-center">
+                      <span className="font-mulish text-xs font-semibold uppercase text-lime">
+                        {dia}
+                      </span>
+                      <span className="font-mulish text-sm font-bold text-white">
+                        {hora}
+                      </span>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="truncate font-mulish text-sm font-semibold text-white">
+                        {partido.jugadores}
+                      </p>
+                      <p className="font-mulish text-xs text-white/60">
+                        {partido.cancha}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
+
             <Link
               href="#contacto"
-              className="mt-10 inline-block w-fit rounded-full bg-lime px-8 py-3 font-mulish text-sm font-semibold text-brand transition-transform hover:scale-105"
+              className="mt-8 inline-block w-fit rounded-full bg-lime px-8 py-3 font-mulish text-sm font-semibold text-brand transition-transform hover:scale-105"
             >
-              Saber más
+              Ver más
             </Link>
           </div>
-        </div>
-
-        {/* Columna central: agenda de partidos (#142d4b) — datos dinámicos */}
-        <div className="flex flex-col justify-center bg-brand px-8 py-14 lg:px-12 lg:py-20">
-          <span className="font-mulish text-sm font-semibold uppercase tracking-widest text-lime">
-            Agenda
-          </span>
-          <h3 className="mt-2 font-kanit text-2xl font-bold text-white md:text-3xl">
-            Próximos partidos
-          </h3>
-
-          <ul className="mt-8 divide-y divide-white/10">
-            {partidos.map((partido) => {
-              const { dia, hora } = formatFecha(partido.fecha);
-              return (
-                <li key={partido.id} className="flex items-center gap-4 py-4">
-                  <div className="flex w-16 flex-shrink-0 flex-col items-center rounded-lg bg-white/10 px-2 py-2 text-center">
-                    <span className="font-mulish text-xs font-semibold uppercase text-lime">
-                      {dia}
-                    </span>
-                    <span className="font-mulish text-sm font-bold text-white">
-                      {hora}
-                    </span>
-                  </div>
-                  <div className="min-w-0">
-                    <p className="truncate font-mulish text-sm font-semibold text-white">
-                      {partido.jugadores}
-                    </p>
-                    <p className="font-mulish text-xs text-white/60">
-                      {partido.cancha}
-                    </p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-
-          <Link
-            href="#contacto"
-            className="mt-8 inline-block w-fit rounded-full bg-lime px-8 py-3 font-mulish text-sm font-semibold text-brand transition-transform hover:scale-105"
-          >
-            Ver más
-          </Link>
-        </div>
-
-        {/* Columna derecha: imagen estática con filtro azul */}
-        <div className="relative min-h-[320px] lg:min-h-0">
-          <ParallaxImage src={settings.torneo_imagen_url} alt={settings.torneo_imagen_alt} />
-          {/* Filtro azul */}
-          <div className="absolute inset-0 bg-brand/50" />
         </div>
       </div>
     </section>
