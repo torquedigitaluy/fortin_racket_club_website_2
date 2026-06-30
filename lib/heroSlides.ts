@@ -8,8 +8,9 @@ export type Slide = {
   /** Versión vertical (9:16) opcional para móvil; si falta, móvil usa `image`. */
   imageMovil?: string;
   alt: string;
-  title: string;
-  text: string;
+  /** Título y bajada opcionales, mostrados sobre la imagen si están completos. */
+  title?: string;
+  text?: string;
 };
 
 const MOCK_SLIDES: Slide[] = [
@@ -55,7 +56,7 @@ export async function getHeroSlides(): Promise<Slide[]> {
     image: r.image_url,
     imageMovil: r.image_movil_url || undefined,
     alt: r.alt ?? "",
-    title: r.title,
-    text: r.texto,
+    title: r.title || undefined,
+    text: r.texto || undefined,
   }));
 }

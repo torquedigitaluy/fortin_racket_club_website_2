@@ -67,6 +67,22 @@ export default function HeroCarousel({ slides }: { slides: Slide[] }) {
       <div className="absolute inset-0 bg-brand/30" />
       <div className="absolute inset-0 bg-gradient-to-t from-brand/50 via-transparent to-brand/10" />
 
+      {/* Título y bajada: opcionales, el slide puede dejarse solo con imagen */}
+      {(slide.title || slide.text) && (
+        <div className="relative z-10 mx-auto flex h-full max-w-4xl flex-col items-center justify-center px-6 text-center text-white">
+          {slide.title && (
+            <h1 className="font-kanit text-4xl font-bold uppercase leading-tight tracking-wide drop-shadow-md sm:text-5xl md:text-7xl">
+              {slide.title}
+            </h1>
+          )}
+          {slide.text && (
+            <p className="mt-6 max-w-2xl font-mulish text-base text-white/90 sm:text-lg">
+              {slide.text}
+            </p>
+          )}
+        </div>
+      )}
+
       {/* Flechas laterales */}
       <button
         type="button"

@@ -69,8 +69,19 @@ export const RESOURCES: Record<string, Resource> = {
     singular: "slide",
     orderBy: { column: "orden", ascending: true },
     fields: [
-      { name: "title", label: "Título", type: "text", required: true, primary: true },
-      { name: "texto", label: "Descripción", type: "textarea", required: true },
+      {
+        name: "title",
+        label: "Título",
+        type: "text",
+        primary: true,
+        help: "Opcional. Si lo completás, se muestra como título sobre la imagen.",
+      },
+      {
+        name: "texto",
+        label: "Descripción",
+        type: "textarea",
+        help: "Opcional. Se muestra debajo del título si está completo.",
+      },
       { name: "image_url", label: "Imagen de fondo (horizontal 16:9)", type: "image", required: true },
       {
         name: "image_movil_url",

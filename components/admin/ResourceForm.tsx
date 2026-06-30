@@ -96,6 +96,9 @@ function FieldInput({
           rows={3}
           className={baseInput}
         />
+        {field.help && (
+          <span className="font-mulish text-xs text-brand/50">{field.help}</span>
+        )}
       </label>
     );
   }
