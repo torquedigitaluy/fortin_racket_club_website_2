@@ -8,7 +8,7 @@ export default async function ClasesPersonalizadas() {
   const [clases, settings] = await Promise.all([getClases(), getSettings()]);
 
   return (
-    <section id="actividades" className="bg-white">
+    <section id="actividades" className="bg-brand">
       <div className="grid grid-cols-1 lg:grid-cols-2">
         {/* Izquierda: imagen de tenista (editable desde el CMS). Admite una
             versión vertical (9:16) para móvil; si falta, se usa la horizontal. */}
@@ -40,13 +40,13 @@ export default async function ClasesPersonalizadas() {
         {/* Derecha: contenido + lista numerada */}
         <div className="flex flex-col justify-center px-6 py-16 lg:px-16 lg:py-24">
           <div className="max-w-xl">
-            <span className="font-mulish text-sm font-semibold uppercase tracking-widest text-brand">
+            <span className="font-mulish text-sm font-semibold uppercase tracking-widest text-white">
               Empieza hoy
             </span>
-            <h2 className="mt-3 font-kanit text-3xl font-bold text-brand md:text-4xl">
+            <h2 className="mt-3 font-kanit text-3xl font-bold text-white md:text-4xl">
               Clases personalizadas
             </h2>
-            <p className="mt-4 font-mulish text-brand/70">
+            <p className="mt-4 font-mulish text-white/70">
               Elegí el formato que mejor se adapta a vos. Sea cual sea tu nivel,
               tenemos una clase pensada para que avances jugando.
             </p>
@@ -57,16 +57,16 @@ export default async function ClasesPersonalizadas() {
                   <span className="font-kanit text-4xl font-bold leading-none text-lime md:text-5xl">
                     {clase.numero}
                   </span>
-                  <div className="border-l border-brand/10 pl-5">
-                    <h3 className="font-kanit text-xl font-bold text-brand">
+                  <div className="border-l border-white/10 pl-5">
+                    <h3 className="font-kanit text-xl font-bold text-white">
                       {clase.title}
                     </h3>
-                    <p className="mt-2 font-mulish text-sm text-brand/70">
+                    <p className="mt-2 font-mulish text-sm text-white/70">
                       {clase.text}
                     </p>
                     <Link
                       href={clase.href}
-                      className="group mt-3 inline-flex items-center gap-1.5 font-mulish text-sm font-semibold text-brand transition-colors hover:text-lime"
+                      className="group mt-3 inline-flex items-center gap-1.5 font-mulish text-sm font-semibold text-white transition-colors hover:text-lime"
                     >
                       Saber más
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

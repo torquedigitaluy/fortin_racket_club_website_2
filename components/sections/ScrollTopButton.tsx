@@ -9,11 +9,11 @@ export default function ScrollTopButton() {
     <button
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="group inline-flex items-center gap-2 font-mulish text-xs font-semibold text-white/70 transition-colors hover:text-lime"
+      className="group inline-flex items-center gap-2 font-mulish text-xs font-semibold text-brand/70 transition-colors hover:text-lime"
     >
       {/* Pelota de tenis */}
       <span className="relative flex h-5 w-5 items-center justify-center rounded-full bg-lime">
-        <span className="absolute h-3 w-3 rounded-full border border-brand/40" />
+        <span className="absolute h-3 w-3 rounded-full border border-white/40" />
       </span>
       Volver al inicio
     </button>

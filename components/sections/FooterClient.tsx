@@ -33,8 +33,8 @@ export default function FooterClient({
 
   return (
     <footer id="contacto">
-      {/* Cuerpo del footer (#142d4b) */}
-      <div className="bg-brand text-white">
+      {/* Cuerpo del footer (blanco) */}
+      <div className="bg-white text-brand">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 md:grid-cols-3">
           {/* Columna 1: logo + info corporativa + teléfono + redes */}
           <div className="flex items-start gap-5">
@@ -48,18 +48,18 @@ export default function FooterClient({
             )}
             <div>
               <h3 className="font-kanit text-2xl font-bold uppercase">
-                Fortín <span className="text-white">Racket Club</span>
+                Fortín <span className="text-brand">Racket Club</span>
               </h3>
-              <p className="mt-4 max-w-xs font-mulish text-sm text-white/70">
+              <p className="mt-4 max-w-xs font-mulish text-sm text-brand/70">
                 {settings.footer_descripcion}
               </p>
-              <p className="mt-6 flex max-w-xs items-start gap-2 font-mulish text-sm text-white/70">
+              <p className="mt-6 flex max-w-xs items-start gap-2 font-mulish text-sm text-brand/70">
                 <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0" />
                 {settings.contacto_direccion}
               </p>
               <a
                 href={telHref}
-                className="mt-4 inline-flex items-center gap-2 font-mulish text-sm text-white/90 transition-colors hover:text-lime"
+                className="mt-4 inline-flex items-center gap-2 font-mulish text-sm text-brand/90 transition-colors hover:text-lime"
               >
                 <Phone className="h-4 w-4" /> {telefono}
               </a>
@@ -71,7 +71,7 @@ export default function FooterClient({
                       key={red.label}
                       href={red.href}
                       aria-label={red.label}
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-lime hover:text-brand"
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-brand/10 transition-colors hover:bg-lime hover:text-white"
                     >
                       <Icon className="h-5 w-5" />
                     </a>
@@ -89,7 +89,7 @@ export default function FooterClient({
                 <li key={enlace.href}>
                   <Link
                     href={enlace.href}
-                    className="font-mulish text-sm text-white/70 transition-colors hover:text-lime"
+                    className="font-mulish text-sm text-brand/70 transition-colors hover:text-lime"
                   >
                     {enlace.label}
                   </Link>
@@ -100,7 +100,7 @@ export default function FooterClient({
               href={settings.contacto_whatsapp_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3 font-mulish text-sm font-semibold text-brand transition-transform hover:scale-105"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3 font-mulish text-sm font-semibold text-white transition-transform hover:scale-105"
             >
               <MessageCircle className="h-4 w-4" /> Contacto
             </a>
@@ -109,14 +109,14 @@ export default function FooterClient({
           {/* Columna 3: mapa de ubicación, como tarjeta clara con accesos directos */}
           <div>
             <h4 className="font-kanit text-lg font-bold">Ubicación</h4>
-            <div className="mt-4 overflow-hidden rounded-2xl bg-white text-brand shadow-lg">
+            <div className="mt-4 overflow-hidden rounded-2xl bg-brand text-white shadow-lg">
               <div className="relative">
                 <FooterMap />
                 <a
                   href={GOOGLE_MAPS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-mulish text-xs font-semibold text-brand shadow-md transition-colors hover:bg-offwhite"
+                  className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-brand px-3 py-1.5 font-mulish text-xs font-semibold text-white shadow-md transition-colors hover:bg-brand-dark"
                 >
                   Abrir en Maps <ExternalLink className="h-3.5 w-3.5" />
                 </a>
@@ -124,12 +124,12 @@ export default function FooterClient({
 
               <div className="flex flex-col gap-4 p-5">
                 <div className="flex items-start gap-2.5">
-                  <MapPin className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
+                  <MapPin className="mt-0.5 h-5 w-5 flex-shrink-0 text-white" />
                   <div>
-                    <p className="font-kanit text-sm font-bold uppercase tracking-wide text-brand">
+                    <p className="font-kanit text-sm font-bold uppercase tracking-wide text-white">
                       Fortín Racket Club
                     </p>
-                    <p className="mt-1 font-mulish text-xs leading-relaxed text-brand/60">
+                    <p className="mt-1 font-mulish text-xs leading-relaxed text-white/60">
                       {settings.contacto_direccion}
                     </p>
                   </div>
@@ -140,7 +140,7 @@ export default function FooterClient({
                     href={GOOGLE_MAPS_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-1.5 rounded-full border border-brand/15 px-3 py-2 font-mulish text-xs font-semibold text-brand transition-colors hover:bg-offwhite"
+                    className="flex items-center justify-center gap-1.5 rounded-full border border-white/15 px-3 py-2 font-mulish text-xs font-semibold text-white transition-colors hover:bg-brand-dark"
                   >
                     <MapPin className="h-3.5 w-3.5" /> Google Maps
                   </a>
@@ -148,7 +148,7 @@ export default function FooterClient({
                     href={WAZE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-1.5 rounded-full border border-brand/15 px-3 py-2 font-mulish text-xs font-semibold text-brand transition-colors hover:bg-offwhite"
+                    className="flex items-center justify-center gap-1.5 rounded-full border border-white/15 px-3 py-2 font-mulish text-xs font-semibold text-white transition-colors hover:bg-brand-dark"
                   >
                     <Navigation className="h-3.5 w-3.5" /> Waze
                   </a>
@@ -159,10 +159,10 @@ export default function FooterClient({
         </div>
       </div>
 
-      {/* Sub-footer (#0d1d30) */}
-      <div className="bg-brand-dark">
+      {/* Sub-footer (offwhite) */}
+      <div className="bg-offwhite">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-5 sm:flex-row">
-          <p className="font-mulish text-xs text-white/50">
+          <p className="font-mulish text-xs text-brand/50">
             © 2026 Fortín Racket Club. Todos los derechos reservados.
           </p>
           <ScrollTopButton />

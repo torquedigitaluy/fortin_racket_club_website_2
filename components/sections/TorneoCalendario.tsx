@@ -72,13 +72,13 @@ export default async function TorneoCalendario() {
         <div className="relative flex flex-col justify-center overflow-hidden px-8 py-14 lg:min-h-[520px] lg:px-12 lg:py-16">
           <ParallaxImage src={settings.torneo_bg_url} alt={settings.torneo_bg_alt} />
           {/* Filtro azul (similar al banner "Oferta de bienvenida") */}
-          <div className="absolute inset-0 bg-brand/50" />
+          <div className="absolute inset-0 bg-white/50" />
 
-          <div className="relative text-white">
+          <div className="relative text-brand">
             <h2 className="font-kanit text-5xl font-bold md:text-6xl">
               Fortín Club Cup
             </h2>
-            <p className="mt-4 font-mulish text-sm text-white/80">
+            <p className="mt-4 font-mulish text-sm text-brand/80">
               Nuestro torneo insignia. Competí, sumá ranking y viví el mejor
               tenis del club.
             </p>
@@ -86,9 +86,9 @@ export default async function TorneoCalendario() {
               {BENEFICIOS.map((beneficio) => (
                 <li
                   key={beneficio}
-                  className="flex items-start gap-3 font-mulish text-sm text-white"
+                  className="flex items-start gap-3 font-mulish text-sm text-brand"
                 >
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-lime text-brand">
+                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-lime text-white">
                     <Check className="h-3.5 w-3.5" />
                   </span>
                   {beneficio}
@@ -97,7 +97,7 @@ export default async function TorneoCalendario() {
             </ul>
             <Link
               href="#contacto"
-              className="mt-10 inline-block w-fit rounded-full bg-lime px-8 py-3 font-mulish text-sm font-semibold text-brand transition-transform hover:scale-105"
+              className="mt-10 inline-block w-fit rounded-full bg-lime px-8 py-3 font-mulish text-sm font-semibold text-white transition-transform hover:scale-105"
             >
               Saber más
             </Link>
@@ -105,21 +105,21 @@ export default async function TorneoCalendario() {
         </div>
       </div>
 
-      {/* Franja inferior a todo el ancho: agenda de partidos en tarjetas (#142d4b) */}
-      <div className="bg-brand px-6 py-14 lg:px-12 lg:py-16">
+      {/* Franja inferior a todo el ancho: agenda de partidos en tarjetas (blanco) */}
+      <div className="bg-white px-6 py-14 lg:px-12 lg:py-16">
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <span className="font-mulish text-sm font-semibold uppercase tracking-widest text-lime">
                 Agenda
               </span>
-              <h3 className="mt-2 font-kanit text-2xl font-bold text-white md:text-3xl">
+              <h3 className="mt-2 font-kanit text-2xl font-bold text-brand md:text-3xl">
                 Próximos partidos
               </h3>
             </div>
             <Link
               href="#contacto"
-              className="inline-block w-fit rounded-full bg-lime px-8 py-3 font-mulish text-sm font-semibold text-brand transition-transform hover:scale-105"
+              className="inline-block w-fit rounded-full bg-lime px-8 py-3 font-mulish text-sm font-semibold text-white transition-transform hover:scale-105"
             >
               Ver más
             </Link>
@@ -131,21 +131,21 @@ export default async function TorneoCalendario() {
               return (
                 <div
                   key={partido.id}
-                  className="flex items-center gap-4 rounded-xl bg-white/5 px-4 py-4"
+                  className="flex items-center gap-4 rounded-xl bg-brand/5 px-4 py-4"
                 >
-                  <div className="flex w-16 flex-shrink-0 flex-col items-center rounded-lg bg-white/10 px-2 py-2 text-center">
+                  <div className="flex w-16 flex-shrink-0 flex-col items-center rounded-lg bg-brand/10 px-2 py-2 text-center">
                     <span className="font-mulish text-xs font-semibold uppercase text-lime">
                       {dia}
                     </span>
-                    <span className="font-mulish text-sm font-bold text-white">
+                    <span className="font-mulish text-sm font-bold text-brand">
                       {hora}
                     </span>
                   </div>
                   <div className="min-w-0">
-                    <p className="truncate font-mulish text-sm font-semibold text-white">
+                    <p className="truncate font-mulish text-sm font-semibold text-brand">
                       {partido.jugadores}
                     </p>
-                    <p className="font-mulish text-xs text-white/60">
+                    <p className="font-mulish text-xs text-brand/60">
                       {partido.cancha}
                     </p>
                   </div>

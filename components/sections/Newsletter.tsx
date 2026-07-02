@@ -10,7 +10,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="whitespace-nowrap rounded-full bg-lime px-8 py-3.5 font-mulish text-sm font-semibold text-brand transition-transform hover:scale-105 disabled:opacity-60"
+      className="whitespace-nowrap rounded-full bg-lime px-8 py-3.5 font-mulish text-sm font-semibold text-white transition-transform hover:scale-105 disabled:opacity-60"
     >
       {pending ? "Enviando…" : "Suscribirme"}
     </button>
@@ -32,12 +32,12 @@ export default function Newsletter({
     <section className="relative overflow-hidden">
       {/* Fondo: raquetas cruzadas (parallax — doble intensidad) */}
       <ParallaxImage src={bgUrl} alt="" intensity={0.8} />
-      {/* Overlay #142d4b al 75% */}
-      <div className="absolute inset-0 bg-brand/75" />
+      {/* Overlay blanco al 75% */}
+      <div className="absolute inset-0 bg-white/75" />
 
-      <div className="relative mx-auto max-w-4xl px-6 py-16 text-center text-white md:py-20">
+      <div className="relative mx-auto max-w-4xl px-6 py-16 text-center text-brand md:py-20">
         <h2 className="font-kanit text-3xl font-bold md:text-4xl">{titulo}</h2>
-        <p className="mx-auto mt-3 max-w-xl font-mulish text-white/80">{texto}</p>
+        <p className="mx-auto mt-3 max-w-xl font-mulish text-brand/80">{texto}</p>
 
         {state?.ok ? (
           <p className="mt-8 font-mulish font-semibold text-lime">{state.msg}</p>
@@ -52,14 +52,14 @@ export default function Newsletter({
               required
               placeholder="Tu correo electrónico"
               aria-label="Correo electrónico"
-              className="w-full rounded-full bg-white px-6 py-3.5 font-mulish text-sm text-brand outline-none ring-lime focus:ring-2"
+              className="w-full rounded-full bg-brand px-6 py-3.5 font-mulish text-sm text-white outline-none ring-lime focus:ring-2"
             />
             <SubmitButton />
           </form>
         )}
 
         {state && !state.ok && (
-          <p className="mt-4 font-mulish text-sm text-white/90">{state.msg}</p>
+          <p className="mt-4 font-mulish text-sm text-brand/90">{state.msg}</p>
         )}
       </div>
     </section>

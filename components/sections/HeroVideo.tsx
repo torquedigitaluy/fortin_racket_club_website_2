@@ -23,9 +23,9 @@ export default function HeroVideo({
         posterUrl={posterUrl}
       />
 
-      {/* Overlay oscuro (igual que el carrusel) */}
-      <div className="absolute inset-0 bg-brand/30" />
-      <div className="absolute inset-0 bg-gradient-to-t from-brand/50 via-transparent to-brand/10" />
+      {/* Overlay claro (igual que el carrusel) */}
+      <div className="absolute inset-0 bg-white/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-white/10" />
     </section>
   );
 }

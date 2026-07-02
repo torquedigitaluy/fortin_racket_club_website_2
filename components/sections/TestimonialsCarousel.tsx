@@ -33,18 +33,18 @@ export default function TestimonialsCarousel({
   if (!t) return null;
 
   return (
-    <section className="bg-offwhite py-20 md:py-28">
+    <section className="bg-brand-dark py-20 md:py-28">
       <div className="mx-auto max-w-3xl px-6 text-center">
         {/* Comillas gigantes */}
         <Quote
-          className="mx-auto h-16 w-16 text-brand md:h-20 md:w-20"
+          className="mx-auto h-16 w-16 text-white md:h-20 md:w-20"
           fill="currentColor"
           strokeWidth={0}
           aria-hidden
         />
 
         {/* Texto de la reseña */}
-        <blockquote className="mt-8 min-h-[7rem] font-kanit text-2xl font-medium leading-snug text-brand md:text-3xl">
+        <blockquote className="mt-8 min-h-[7rem] font-kanit text-2xl font-medium leading-snug text-white md:text-3xl">
           “{t.texto}”
         </blockquote>
 
@@ -60,8 +60,8 @@ export default function TestimonialsCarousel({
               className="object-cover"
             />
           </div>
-          <p className="mt-3 font-mulish font-bold text-brand">{t.autor}</p>
-          <p className="font-mulish text-sm text-brand/60">{t.rol}</p>
+          <p className="mt-3 font-mulish font-bold text-white">{t.autor}</p>
+          <p className="font-mulish text-sm text-white/60">{t.rol}</p>
         </div>
 
         {/* Controles */}
@@ -70,7 +70,7 @@ export default function TestimonialsCarousel({
             type="button"
             onClick={prev}
             aria-label="Reseña anterior"
-            className="rounded-full border border-brand/20 p-2 text-brand transition-colors hover:bg-brand hover:text-white"
+            className="rounded-full border border-white/20 p-2 text-white transition-colors hover:bg-white hover:text-brand"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -84,7 +84,7 @@ export default function TestimonialsCarousel({
                 onClick={() => goTo(i)}
                 aria-label={`Ir a la reseña ${i + 1}`}
                 className={`h-2.5 rounded-full transition-all ${
-                  i === current ? "w-8 bg-brand" : "w-2.5 bg-brand/30 hover:bg-brand/50"
+                  i === current ? "w-8 bg-white" : "w-2.5 bg-white/30 hover:bg-white/50"
                 }`}
               />
             ))}
@@ -94,7 +94,7 @@ export default function TestimonialsCarousel({
             type="button"
             onClick={next}
             aria-label="Reseña siguiente"
-            className="rounded-full border border-brand/20 p-2 text-brand transition-colors hover:bg-brand hover:text-white"
+            className="rounded-full border border-white/20 p-2 text-white transition-colors hover:bg-white hover:text-brand"
           >
             <ChevronRight className="h-5 w-5" />
           </button>

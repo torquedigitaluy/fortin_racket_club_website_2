@@ -23,14 +23,14 @@ function BeneficioItem({ beneficio }: { beneficio: Beneficio }) {
         reverse ? "lg:flex-row-reverse lg:text-right" : ""
       }`}
     >
-      <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-brand/5 text-brand">
+      <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-white/5 text-white">
         <Icon className="h-7 w-7" strokeWidth={1.75} />
       </span>
       <div>
-        <h3 className="font-kanit text-lg font-semibold text-brand">
+        <h3 className="font-kanit text-lg font-semibold text-white">
           {beneficio.title}
         </h3>
-        <p className="mt-1 font-mulish text-sm text-brand/70">
+        <p className="mt-1 font-mulish text-sm text-white/70">
           {beneficio.text}
         </p>
       </div>
@@ -46,17 +46,17 @@ export default async function Beneficios() {
   const izquierda = beneficios.filter((b) => b.columna === "left");
   const derecha = beneficios.filter((b) => b.columna === "right");
   return (
-    <section id="beneficios" className="bg-white py-20 md:py-28">
+    <section id="beneficios" className="bg-brand py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6">
         {/* Encabezado */}
         <div className="mx-auto mb-16 max-w-2xl text-center">
-          <span className="font-mulish text-sm font-semibold uppercase tracking-widest text-brand">
+          <span className="font-mulish text-sm font-semibold uppercase tracking-widest text-white">
             Beneficios
           </span>
-          <h2 className="mt-3 font-kanit text-3xl font-bold text-brand md:text-4xl">
+          <h2 className="mt-3 font-kanit text-3xl font-bold text-white md:text-4xl">
             Full Comfort para Miembros
           </h2>
-          <p className="mt-4 font-mulish text-brand/70">
+          <p className="mt-4 font-mulish text-white/70">
             Todo lo que un socio necesita para disfrutar el club dentro y fuera
             de la cancha.
           </p>
@@ -72,7 +72,7 @@ export default async function Beneficios() {
           </div>
 
           {/* Imagen central */}
-          <div className="relative mx-auto h-72 w-full max-w-sm overflow-hidden rounded-[2rem] bg-offwhite shadow-xl sm:h-80 lg:h-[460px]">
+          <div className="relative mx-auto h-72 w-full max-w-sm overflow-hidden rounded-[2rem] bg-brand-dark shadow-xl sm:h-80 lg:h-[460px]">
             <Image
               src={settings.beneficios_imagen_url}
               alt={settings.beneficios_imagen_alt}

@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-offwhite text-brand font-mulish antialiased;
+    @apply bg-brand-dark text-white font-mulish antialiased;
   }
 
   h1,
