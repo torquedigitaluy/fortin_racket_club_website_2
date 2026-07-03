@@ -33,7 +33,7 @@ export default async function Entrenadores() {
           {coaches.map((coach) => (
             <article
               key={coach.id}
-              className="group flex flex-col overflow-hidden rounded-2xl bg-gray-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              className="group flex flex-col overflow-hidden rounded-2xl bg-brand-dark shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
               {/* Foto */}
               <div className="relative aspect-[3/4] w-full overflow-hidden">
